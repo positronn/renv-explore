@@ -1,11 +1,23 @@
 # iris.R
 library(magrittr)
+library(tibble)
+library(janitor)
+library(ggplot2)
+library(readr)
 
-iris <- tibble::tibble(iris)
+# load iris dataset as tibble
+iris <- tibble(iris)
 
+# clean column names
 iris <- iris %>%
-    janitor::clean_names()
+    clean_names()
+
+# plot a scatterplot
+p <- iris %>%
+    ggplot() +
+    geom_point(aes(x=sepal_length, y=petal_length, color=species))
+
+ggsave('output/plot/iris-scatterplot-pl-vs-sl.png', width=1000, height=700, units = 'px')
 
 iris %>%
-    ggplot2::ggplot() +
-    ggplot2::geom_point(ggplot2::aes(x=sepal_length, y=petal_length, color=species))
+    write_csv('output/report/iris_dataset.csv')
