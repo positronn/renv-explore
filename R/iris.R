@@ -17,7 +17,7 @@ p <- iris %>%
     ggplot() +
     geom_point(aes(x=sepal_length, y=petal_length, color=species))
 
-ggsave('output/plot/iris-scatterplot-pl-vs-sl.png', width=1000, height=700, units = 'px')
+ggsave('output/plot/iris-scatterplot-pl-vs-sl.pdf')
 
 iris %>%
     write_csv('output/report/iris_dataset.csv')
